@@ -1,0 +1,10 @@
+from collections import defaultdict
+class Solution:
+    def change(self, amount: int, coins: List[int]) -> int:
+        dp = defaultdict(lambda :0)
+        dp[0] = 1
+        for c in coins[::-1]:
+            for a in range(1, amount+1):
+                if c <= a:
+                    dp[a] += dp[a-c]
+        return dp[amount]
